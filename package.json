@@ -1,15 +1,15 @@
 {
-  "name": "angular-inport",
-  "version": "1.0.1",
-  "description": "Angular in view port for infinite scrolling or checking if the section is in the viewport.",
+  "name": "ng-check-in-viewport",
+  "version": "1.0.2",
+  "description": "Angular directive to check if the element is in the viewport.",
   "main": "dist/inview.module.js",
   "typings": "dist/inview.module.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "node ./node_modules/@angular/compiler-cli/src/main.js -p src/",
-    "prepublish": "npm run clean &&  npm run compile && rm -rf dist/node_modules && npm run build",
-    "clean": "rm -rf dist && rm -rf bundles",
-    "build": "node make.js"
+    "prepublish": "npm run build",
+    "prebuild": "rimraf dist",
+    "build": "ngc -p ./src/tsconfig.aot.json",
+    "postbuild": "rimraf aot"
   },
   "repository": {
     "type": "git",
@@ -41,6 +41,7 @@
     "@angular/compiler": "^2.4.0",
     "@angular/compiler-cli": "^2.4.0",
     "@angular/core": "^2.4.0",
+    "rimraf": "^2.6.1",
     "rxjs": "^5.2.0",
     "systemjs-builder": "^0.16.3",
     "tslint": "^4.5.0",

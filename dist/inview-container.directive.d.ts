@@ -1,0 +1,35 @@
+import { OnInit, OnDestroy, AfterViewInit, EventEmitter, ElementRef, NgZone } from '@angular/core';
+import { ScrollObservable } from './utils/scroll-observable';
+import { WindowRuler } from './utils/viewport-ruler';
+import { ElementBoundingPositions } from './utils/models';
+export declare class InviewContainerDirective implements OnInit, OnDestroy, AfterViewInit {
+    private _element;
+    private _scrollObservable;
+    private _windowRuler;
+    private _zone;
+    private _scrollSuscription;
+    private _throttleType;
+    private _offset;
+    private _viewPortOffset;
+    private _throttle;
+    private _scrollWindow;
+    private _data;
+    private _bestMatch;
+    private _lastScrollY;
+    private _scrollDirection;
+    offset: Array<number> | number;
+    viewPortOffset: Array<number> | number;
+    throttle: number;
+    scrollWindow: boolean;
+    data: any;
+    bestMatch: any;
+    inview: EventEmitter<any>;
+    private _inviewChildren;
+    constructor(_element: ElementRef, _scrollObservable: ScrollObservable, _windowRuler: WindowRuler, _zone: NgZone);
+    ngOnInit(): void;
+    ngAfterViewInit(): void;
+    private _checkScrollDirection();
+    private _getViewPortRuler();
+    ngOnDestroy(): void;
+    handleOnScroll(containersBounds: ElementBoundingPositions): void;
+}
